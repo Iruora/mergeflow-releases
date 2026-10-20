@@ -5,7 +5,7 @@ Installers for [Mergeflow](https://arouriengineer.dev), a desktop dashboard for 
 Download the latest version from the [Releases](https://github.com/Iruora/mergeflow-releases/releases/latest) page:
 
 - **macOS**: the `.dmg` (Apple Silicon: `arm64`, Intel: `x64`)
-- **Windows**: the `Setup` `.exe`
+- **Windows**: the `Setup` `.exe` installer, or the `-win.zip` to run `Mergeflow.exe` without installing (unzip it anywhere and open `Mergeflow.exe`)
 
 ## The app isn't signed yet
 
@@ -25,4 +25,4 @@ Alternatively, try to open the app once, then go to **System Settings > Privacy 
 
 ## Updates
 
-On Windows, Mergeflow updates itself from this page. On macOS, automatic updates need a signed app, so download the new `.dmg` from the Releases page and repeat the `xattr` command.
+On Windows, the installed app updates itself from this page. The zip version doesn't update itself: download the new zip and replace the folder. On macOS, automatic updates need a signed app, so download the new `.dmg` from the Releases page and repeat the `xattr` command.
