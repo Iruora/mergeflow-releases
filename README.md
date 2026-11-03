@@ -1,6 +1,6 @@
 # Mergeflow releases
 
-Installers for [Mergeflow](https://arouriengineer.dev), a desktop dashboard for GitLab merge requests.
+Installers for [Mergeflow](https://iruora.github.io/mergeflow-releases/), a desktop dashboard for GitLab merge requests. Read the [documentation](https://iruora.github.io/mergeflow-releases/docs.html) to get started.
 
 Download the latest version from the [Releases](https://github.com/Iruora/mergeflow-releases/releases/latest) page:
 
@@ -25,4 +25,8 @@ Alternatively, try to open the app once, then go to **System Settings > Privacy 
 
 ## Updates
 
-On Windows, the installed app updates itself from this page. The zip version doesn't update itself: download the new zip and replace the folder. On macOS, automatic updates need a signed app, so download the new `.dmg` from the Releases page and repeat the `xattr` command.
+Installed copies update themselves from this page, on macOS and with the Windows installer: they check at launch and every 4 hours, download the new version in the background, and offer "Restart to update". On macOS, the `xattr` command is only needed for the first install. The portable Windows zip doesn't update itself: download the new zip and replace the folder.
+
+## Website
+
+The product website and documentation live in [`site/`](site/) and are published to GitHub Pages by the [Pages workflow](.github/workflows/pages.yml) whenever `site/` changes or a release is published. The workflow points the download links at the latest stable release, so they never need editing by hand.
