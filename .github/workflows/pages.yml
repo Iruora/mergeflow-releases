@@ -1,0 +1,57 @@
+# Publishes the website in site/ to GitHub Pages.
+# Runs when the site changes, when a release is published (so the download
+# links follow the latest version), or by hand.
+name: Pages
+
+on:
+  push:
+    branches: [main]
+    paths: ['site/**', '.github/workflows/pages.yml']
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Point the download links at the latest release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # The latest stable release; release candidates are never "latest".
+          tag=$(gh release view --repo "$GITHUB_REPOSITORY" --json tagName --jq .tagName)
+          new=${tag#v}
+          old=$(grep -oE 'releases/download/v[0-9][^/]*/' site/index.html | head -n1 | sed -E 's#releases/download/v([^/]*)/#\1#')
+          echo "Site links: $old, latest release: $new"
+          if [ -n "$old" ] && [ -n "$new" ] && [ "$old" != "$new" ]; then
+            old_re=$(printf '%s' "$old" | sed 's/\./\\./g')
+            sed -i "s/$old_re/$new/g" site/*.html
+          fi
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mergeflow: your GitLab merge requests, in one calm queue</title>
+  <meta name="title-en" content="Mergeflow: your GitLab merge requests, in one calm queue">
+  <meta name="title-fr" content="Mergeflow : vos merge requests GitLab, dans une seule file">
+  <meta name="description" content="Mergeflow is a free desktop app for macOS and Windows that shows every GitLab merge request waiting for you, nudges your team about stale reviews with native notifications, shows linked Jira tickets and runs AI reviews with your own Claude Code or GitHub Copilot.">
+  <meta name="color-scheme" content="light dark">
+  <meta property="og:title" content="Mergeflow">
+  <meta property="og:description" content="Every GitLab merge request that needs you, in one calm queue. Native notifications for stale reviews, Jira context and AI review.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/img/poster.webp">
+  <link rel="icon" href="assets/img/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/img/icon.png" type="image/png">
+  <link rel="stylesheet" href="assets/site.css">
+  <script src="assets/site.js"></script>
+</head>
+<body>
+<a class="skip" href="#main"><span lang="en">Skip to content</span><span lang="fr">Aller au contenu</span></a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="./"><img src="assets/img/icon.svg" alt="" width="30" height="30">Mergeflow</a>
+    <nav class="nav" aria-label="Main">
+      <a class="hide-sm" href="#features"><span lang="en">Features</span><span lang="fr">Fonctionnalités</span></a>
+      <a class="hide-sm" href="#video"><span lang="en">Video</span><span lang="fr">Vidéo</span></a>
+      <a href="docs.html"><span lang="en">Docs</span><span lang="fr">Docs</span></a>
+      <a href="#download"><span lang="en">Download</span><span lang="fr">Télécharger</span></a>
+      <div class="tools">
+        <button class="icon-btn" id="lang-toggle" type="button" title="Français / English"><span lang="en">FR</span><span lang="fr">EN</span></button>
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Light or dark theme">
+          <svg class="theme-light-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+          <svg class="theme-dark-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"/></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <!-- Hero -->
+  <div class="hero">
+    <div class="wrap">
+      <span class="eyebrow"><span class="dot"></span><span lang="en">Free for macOS and Windows · v1.1.0</span><span lang="fr">Gratuit pour macOS et Windows · v1.1.0</span></span>
+      <h1>
+        <span lang="en">Every merge request that needs you, in <span class="grad">one calm queue</span></span>
+        <span lang="fr">Toutes les merge requests qui vous attendent, dans <span class="grad">une seule file</span></span>
+      </h1>
+      <p class="lead">
+        <span lang="en">Mergeflow follows your GitLab projects, shows what is ready to review or merge, and nudges your team with native notifications before reviews go stale. Jira tickets and AI reviews are one click away.</span>
+        <span lang="fr">Mergeflow suit vos projets GitLab, montre ce qui est prêt à relire ou à fusionner, et relance l'équipe par des notifications natives avant qu'une revue ne traîne. Les tickets Jira et les revues IA sont à un clic.</span>
+      </p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#download">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+          <span lang="en">Download Mergeflow</span><span lang="fr">Télécharger Mergeflow</span>
+        </a>
+        <a class="btn btn-ghost" href="#video">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+          <span lang="en">Watch the 1-minute tour</span><span lang="fr">Voir la visite d'une minute</span>
+        </a>
+      </div>
+      <p class="cta-note"><span lang="en">Read-only GitLab token · nothing leaves your computer except calls to your own GitLab and Jira</span><span lang="fr">Jeton GitLab en lecture seule · rien ne quitte votre ordinateur, sauf les appels à votre GitLab et à votre Jira</span></p>
+      <div class="shot">
+        <img src="assets/img/sidebar.webp" width="1280" height="860" alt="Mergeflow dashboard: a queue of merge requests with urgent, stale and approval status, filters and a sidebar of projects">
+      </div>
+    </div>
+  </div>
+
+  <!-- Why -->
+  <section id="features" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <h2><span lang="en">Reviews stop slipping through the cracks</span><span lang="fr">Plus aucune revue n'est oubliée</span></h2>
+        <p><span lang="en">GitLab's to-do list tells you what changed. Mergeflow tells you what is waiting, for how long, and on whom.</span><span lang="fr">La liste de tâches de GitLab dit ce qui a changé. Mergeflow dit ce qui attend, depuis combien de temps, et qui doit agir.</span></p>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="ico purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M6 9v12M13 6h3a2 2 0 0 1 2 2v7"/></svg></div>
+          <h3><span lang="en">One queue for all projects</span><span lang="fr">Une file pour tous les projets</span></h3>
+          <p><span lang="en">Open merge requests that are mergeable or waiting only on reviewers, across every project you follow, sorted urgent first, then stale, then by severity.</span><span lang="fr">Les merge requests ouvertes, fusionnables ou qui n'attendent que des relecteurs, sur tous vos projets, triées : urgentes, puis en retard, puis par gravité.</span></p>
+        </div>
+        <div class="card">
+          <div class="ico amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg></div>
+          <h3><span lang="en">Native nudges for stale reviews</span><span lang="fr">Des relances natives pour les revues en retard</span></h3>
+          <p><span lang="en">macOS and Windows notifications when an MR turns urgent, becomes ready, goes stale, or someone answers your thread. Click one to open the MR.</span><span lang="fr">Des notifications macOS et Windows quand une MR devient urgente, prête, en retard, ou qu'on répond à votre fil. Un clic ouvre la MR.</span></p>
+        </div>
+        <div class="card">
+          <div class="ico blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <h3><span lang="en">Context without the tab hunt</span><span lang="fr">Le contexte, sans chercher l'onglet</span></h3>
+          <p><span lang="en">Description, pipeline, approvals and every thread, flagged "awaiting you" or "waiting on author", with formatted Markdown.</span><span lang="fr">Description, pipeline, approbations et chaque fil de discussion, marqué « vous attend » ou « attend l'auteur », avec le Markdown mis en forme.</span></p>
+        </div>
+        <div class="card">
+          <div class="ico purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></div>
+          <h3><span lang="en">Jira ticket inside the MR</span><span lang="fr">Le ticket Jira dans la MR</span></h3>
+          <p><span lang="en">Jira Cloud or Data Center. An issue key in the title, branch or labels brings in the ticket's status, type, priority, assignee and description.</span><span lang="fr">Jira Cloud ou Data Center. Une clé de ticket dans le titre, la branche ou les labels affiche son statut, son type, sa priorité, son assigné et sa description.</span></p>
+        </div>
+        <div class="card">
+          <div class="ico green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 4.6L18.5 9l-4.6 1.9L12 15.5l-1.9-4.6L5.5 9l4.6-1.4z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></svg></div>
+          <h3><span lang="en">AI review with your own CLI</span><span lang="fr">Revue IA avec votre propre CLI</span></h3>
+          <p><span lang="en">Run Claude Code or GitHub Copilot CLI on an MR, with your agents and skills or Mergeflow's Clean Code reviewer. Findings stay on your machine.</span><span lang="fr">Lancez Claude Code ou GitHub Copilot CLI sur une MR, avec vos agents et vos skills ou le relecteur Clean Code de Mergeflow. Les remarques restent sur votre machine.</span></p>
+        </div>
+        <div class="card">
+          <div class="ico red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
+          <h3><span lang="en">Read-only and private</span><span lang="fr">Lecture seule et privé</span></h3>
+          <p><span lang="en">A <code>read_api</code> token stored in your system keychain. No account, no server, no tracking. Mergeflow never writes to GitLab.</span><span lang="fr">Un jeton <code>read_api</code> rangé dans le trousseau du système. Pas de compte, pas de serveur, pas de pistage. Mergeflow n'écrit jamais dans GitLab.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video -->
+  <section id="video">
+    <div class="wrap">
+      <div class="section-head">
+        <h2><span lang="en">See it in 80 seconds</span><span lang="fr">Découvrez-le en 80 secondes</span></h2>
+        <p><span lang="en">A short tour of the queue, notifications, Jira and AI review.</span><span lang="fr">Une courte visite de la file, des notifications, de Jira et de la revue IA.</span></p>
+      </div>
+      <div class="video-box">
+        <video lang="en" controls preload="none" playsinline poster="assets/img/poster.webp" width="1280" height="720">
+          <source src="assets/video/mergeflow-en.mp4" type="video/mp4">
+          Your browser cannot play this video. <a href="assets/video/mergeflow-en.mp4">Download it</a>.
+        </video>
+        <video lang="fr" controls preload="none" playsinline poster="assets/img/poster.webp" width="1280" height="720">
+          <source src="assets/video/mergeflow-fr.mp4" type="video/mp4">
+          Votre navigateur ne peut pas lire cette vidéo. <a href="assets/video/mergeflow-fr.mp4">Téléchargez-la</a>.
+        </video>
+      </div>
+      <p class="video-note"><span lang="en">Recorded during the beta, with mock data.</span><span lang="fr">Enregistrée pendant la bêta, avec des données fictives. Voix française entraînée sur le corpus SIWIS (CC BY 4.0).</span></p>
+    </div>
+  </section>
+
+  <!-- Feature tour -->
+  <section class="alt">
+    <div class="wrap">
+      <div class="feature">
+        <div class="feature-text">
+          <h3><span lang="en">Know what to review next</span><span lang="fr">Savoir quoi relire ensuite</span></h3>
+          <p><span lang="en">Each card shows labels, approvals, pipeline, comments and how long the MR has been ready. Filter by project, author or team, or press <kbd>Ctrl</kbd>/<kbd>⌘</kbd> <kbd>K</kbd> to search.</span><span lang="fr">Chaque carte affiche les labels, les approbations, le pipeline, les commentaires et depuis quand la MR est prête. Filtrez par projet, auteur ou équipe, ou cherchez avec <kbd>Ctrl</kbd>/<kbd>⌘</kbd> <kbd>K</kbd>.</span></p>
+          <ul>
+            <li><span lang="en">Sidebar views: urgent, getting stale, needs approval, approved by me</span><span lang="fr">Vues : urgentes, bientôt en retard, à approuver, approuvées par moi</span></li>
+            <li><span lang="en">Your own urgent label and severity order (Critical, High, Medium, Low)</span><span lang="fr">Votre label d'urgence et votre ordre de gravité (Critical, High, Medium, Low)</span></li>
+            <li><span lang="en">Synced every 3 minutes, or whenever you like</span><span lang="fr">Synchronisé toutes les 3 minutes, ou à la demande</span></li>
+            <li><span lang="en">Click a title for the full context: branches, pipeline, approvals, description and Jira ticket</span><span lang="fr">Un clic sur le titre affiche tout le contexte : branches, pipeline, approbations, description et ticket Jira</span></li>
+          </ul>
+        </div>
+        <img src="assets/img/details.webp" width="1280" height="860" loading="lazy" alt="Merge request details with author, branches, pipeline, approvals, labels and the linked Jira ticket">
+      </div>
+      <div class="feature flip">
+        <div class="feature-text">
+          <h3><span lang="en">Threads that say who is waiting</span><span lang="fr">Des fils qui disent qui attend</span></h3>
+          <p><span lang="en">Every discussion, unresolved first, marked "Awaiting you", "Waiting on author" or "Resolved". Threads you started are flagged, and you are notified when someone replies.</span><span lang="fr">Chaque discussion, les non résolues d'abord, marquée « Vous attend », « Attend l'auteur » ou « Résolue ». Les fils que vous avez ouverts sont signalés, et vous êtes prévenu quand quelqu'un répond.</span></p>
+        </div>
+        <img src="assets/img/threads.webp" width="1280" height="860" loading="lazy" alt="Threads modal listing discussions with their status">
+      </div>
+      <div class="feature">
+        <div class="feature-text">
+          <h3><span lang="en">Notifications your team will notice</span><span lang="fr">Des notifications que l'équipe remarque</span></h3>
+          <p><span lang="en">Native notifications in your language, a bell with an unread count, and a badge on the app icon. Clear them one by one or all at once.</span><span lang="fr">Des notifications natives dans votre langue, une cloche avec le nombre de non-lues et un badge sur l'icône de l'application. Effacez-les une par une ou toutes d'un coup.</span></p>
+          <ul>
+            <li><span lang="en">Urgent, ready to merge, gone stale</span><span lang="fr">Urgente, prête à fusionner, en retard</span></li>
+            <li><span lang="en">Replies and resolved threads you started</span><span lang="fr">Réponses et résolutions sur vos fils</span></li>
+            <li><span lang="en">Token about to expire, 7 and 3 days ahead</span><span lang="fr">Jeton bientôt expiré, 7 et 3 jours avant</span></li>
+          </ul>
+        </div>
+        <img src="assets/img/notifications.webp" width="1280" height="793" loading="lazy" alt="Notification popover with recent events and a Clear all button">
+      </div>
+      <div class="feature flip">
+        <div class="feature-text">
+          <h3><span lang="en">The Jira ticket, right there</span><span lang="fr">Le ticket Jira, juste là</span></h3>
+          <p><span lang="en">A status badge on the card and the full ticket in the details view. Jira is optional and never slows down the GitLab sync.</span><span lang="fr">Un badge de statut sur la carte et le ticket complet dans le détail. Jira est facultatif et ne ralentit jamais la synchronisation GitLab.</span></p>
+        </div>
+        <img src="assets/img/jira.webp" width="1280" height="860" loading="lazy" alt="Merge request details with the linked Jira ticket">
+      </div>
+      <div class="feature">
+        <div class="feature-text">
+          <h3><span lang="en">A second pair of eyes, on your terms</span><span lang="fr">Un deuxième avis, à vos conditions</span></h3>
+          <p><span lang="en">Mergeflow hands the MR diff to your own Claude Code or GitHub Copilot CLI, with every tool switched off. Pick an agent and a skill per MR, or use the built-in Clean Code and SOLID reviewer with Mermaid diagrams of the change.</span><span lang="fr">Mergeflow confie le diff de la MR à votre propre Claude Code ou GitHub Copilot CLI, tous les outils désactivés. Choisissez un agent et un skill par MR, ou le relecteur intégré Clean Code et SOLID, avec des diagrammes Mermaid du changement.</span></p>
+          <ul>
+            <li><span lang="en">Findings on changed lines only, grouped Critical, Major, Minor, Nit</span><span lang="fr">Remarques sur les lignes modifiées uniquement, classées Critical, Major, Minor, Nit</span></li>
+            <li><span lang="en">Saved as Markdown on your computer, never posted to GitLab</span><span lang="fr">Enregistrées en Markdown sur votre ordinateur, jamais publiées dans GitLab</span></li>
+          </ul>
+        </div>
+        <img src="assets/img/review-findings.webp" width="1280" height="793" loading="lazy" alt="AI review viewer with findings grouped by severity">
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="screenshots">
+    <div class="wrap">
+      <div class="section-head">
+        <h2><span lang="en">A closer look</span><span lang="fr">De plus près</span></h2>
+        <p><span lang="en">English and French, light and dark. Screenshots use mock data.</span><span lang="fr">En français et en anglais, en clair et en sombre. Les captures utilisent des données fictives.</span></p>
+      </div>
+      <div class="gallery">
+        <figure><a href="assets/img/welcome.webp"><img src="assets/img/welcome.webp" loading="lazy" width="1180" height="780" alt="Welcome page"></a><figcaption><span lang="en">Connect GitLab.com or your own server</span><span lang="fr">Connectez GitLab.com ou votre serveur</span></figcaption></figure>
+        <figure><a href="assets/img/projects.webp"><img src="assets/img/projects.webp" loading="lazy" width="1180" height="780" alt="Project chooser"></a><figcaption><span lang="en">Choose the projects to follow</span><span lang="fr">Choisissez les projets à suivre</span></figcaption></figure>
+        <figure><a href="assets/img/review-diagrams.webp"><img src="assets/img/review-diagrams.webp" loading="lazy" width="1280" height="793" alt="AI review with Mermaid diagrams"></a><figcaption><span lang="en">Diagrams of the change in a review</span><span lang="fr">Diagrammes du changement dans une revue</span></figcaption></figure>
+        <figure><a href="assets/img/review-dark-fr.webp"><img src="assets/img/review-dark-fr.webp" loading="lazy" width="1280" height="793" alt="AI review in French, dark theme"></a><figcaption><span lang="en">Review in French, dark theme</span><span lang="fr">Revue en français, thème sombre</span></figcaption></figure>
+        <figure><a href="assets/img/ai-start.webp"><img src="assets/img/ai-start.webp" loading="lazy" width="1280" height="820" alt="Start an AI review: pick agent, skill and base branch"></a><figcaption><span lang="en">Pick an agent, a skill and a base branch</span><span lang="fr">Choisissez un agent, un skill et une branche de base</span></figcaption></figure>
+        <figure><a href="assets/img/settings.webp"><img src="assets/img/settings.webp" loading="lazy" width="1280" height="860" alt="Settings"></a><figcaption><span lang="en">Thresholds, labels, language and more</span><span lang="fr">Seuils, labels, langue et plus</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Download -->
+  <section id="download" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <h2><span lang="en">Download Mergeflow</span><span lang="fr">Télécharger Mergeflow</span></h2>
+        <p><span lang="en">Free. Installed copies update themselves.</span><span lang="fr">Gratuit. Les copies installées se mettent à jour toutes seules.</span></p>
+      </div>
+      <div class="dl-grid">
+        <div class="card dl" data-os="mac">
+          <h3><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.8-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.3 1.2 9.7.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.6-1-2.6-3.8ZM14 5.4c.7-.8 1.1-1.9 1-3-.9 0-2.1.6-2.8 1.4-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.5 2.8-1.3Z"/></svg>macOS <span class="badge"><span lang="en">Your system</span><span lang="fr">Votre système</span></span></h3>
+          <a class="btn btn-primary" href="https://github.com/Iruora/mergeflow-releases/releases/download/v1.1.0/Mergeflow-1.1.0-arm64.dmg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span lang="en">Apple Silicon (M1 and later)</span><span lang="fr">Apple Silicon (M1 et suivants)</span></a>
+          <a class="btn btn-ghost" href="https://github.com/Iruora/mergeflow-releases/releases/download/v1.1.0/Mergeflow-1.1.0-x64.dmg"><span lang="en">Intel Mac</span><span lang="fr">Mac Intel</span></a>
+          <small><span lang="en">macOS asks for one extra step the first time. <a href="docs.html#install-mac">See how</a>.</span><span lang="fr">macOS demande une étape de plus la première fois. <a href="docs.html#install-mac">Voir comment</a>.</span></small>
+        </div>
+        <div class="card dl" data-os="win">
+          <h3><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10 4.5v7H3zM11 4.3 21 3v8.5H11zM3 12.5h7v7l-7-1zM11 12.5h10V21l-10-1.4z"/></svg>Windows <span class="badge"><span lang="en">Your system</span><span lang="fr">Votre système</span></span></h3>
+          <a class="btn btn-primary" href="https://github.com/Iruora/mergeflow-releases/releases/download/v1.1.0/Mergeflow-Setup-1.1.0.exe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span lang="en">Installer (.exe, no admin rights)</span><span lang="fr">Installeur (.exe, sans droits admin)</span></a>
+          <a class="btn btn-ghost" href="https://github.com/Iruora/mergeflow-releases/releases/download/v1.1.0/Mergeflow-Setup-1.1.0.zip"><span lang="en">Installer in a .zip</span><span lang="fr">Installeur dans un .zip</span></a>
+          <small><span lang="en">Use the .zip when your network blocks .exe downloads. A <a href="https://github.com/Iruora/mergeflow-releases/releases/download/v1.1.0/Mergeflow-1.1.0-win.zip">portable version</a> runs without installing but does not update itself.</span><span lang="fr">Prenez le .zip si votre réseau bloque les .exe. Une <a href="https://github.com/Iruora/mergeflow-releases/releases/download/v1.1.0/Mergeflow-1.1.0-win.zip">version portable</a> se lance sans installation, mais ne se met pas à jour.</span></small>
+        </div>
+      </div>
+      <p class="version-line"><span lang="en">Version 1.1.0 ·</span><span lang="fr">Version 1.1.0 ·</span> <a href="https://github.com/Iruora/mergeflow-releases/releases"><span lang="en">All releases and release notes</span><span lang="fr">Toutes les versions</span></a></p>
+    </div>
+  </section>
+
+  <!-- Docs teaser -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2><span lang="en">Up and running in two minutes</span><span lang="fr">Prêt en deux minutes</span></h2>
+        <p><span lang="en">Create a GitLab token with the <code>read_api</code> scope, paste it in, pick your projects. That's it.</span><span lang="fr">Créez un jeton GitLab avec le scope <code>read_api</code>, collez-le, choisissez vos projets. C'est tout.</span></p>
+      </div>
+      <div class="cta">
+        <a class="btn btn-primary" href="docs.html#gitlab"><span lang="en">Read the setup guide</span><span lang="fr">Lire le guide d'installation</span></a>
+        <a class="btn btn-ghost" href="docs.html#faq"><span lang="en">FAQ</span><span lang="fr">FAQ</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year">2026</span> Mergeflow · <span lang="en">Made by</span><span lang="fr">Créé par</span> <a href="https://arouriengineer.dev">Nidhal</a></span>
+    <span><a href="docs.html"><span lang="en">Documentation</span><span lang="fr">Documentation</span></a> · <a href="https://github.com/Iruora/mergeflow-releases/releases">Releases</a> · <span lang="en">No cookies, no tracking.</span><span lang="fr">Ni cookies, ni pistage.</span> <span lang="en">GitLab and Jira are trademarks of their owners.</span><span lang="fr">GitLab et Jira sont des marques de leurs propriétaires.</span></span>
+  </div>
+</footer>
+</body>
+</html>
