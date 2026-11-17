@@ -279,3 +279,12 @@ details p:last-child { margin-bottom: 0; }
   .nav { gap: 10px; }
   .nav a { font-size: 14px; }
 }
+
+/* Screenshots taken in both themes: show the one that matches the page. */
+.shot-dark { display: none !important; }
+:root[data-theme="dark"] .shot-dark { display: block !important; }
+:root[data-theme="dark"] .shot-light { display: none !important; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .shot-dark { display: block !important; }
+  :root:not([data-theme="light"]) .shot-light { display: none !important; }
+}

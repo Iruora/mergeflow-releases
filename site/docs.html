@@ -6,7 +6,7 @@
   <title>Mergeflow documentation</title>
   <meta name="title-en" content="Mergeflow documentation">
   <meta name="title-fr" content="Documentation de Mergeflow">
-  <meta name="description" content="How to install Mergeflow, connect GitLab and Jira, read the merge request queue, set up notifications, teams and AI review, and fix common problems.">
+  <meta name="description" content="How to install Mergeflow, connect GitLab and Jira, read the merge request queue, set up notifications, teams and AI review with your own CLI or LLM service, and fix common problems.">
   <meta name="color-scheme" content="light dark">
   <link rel="icon" href="assets/img/icon.svg" type="image/svg+xml">
   <link rel="icon" href="assets/img/icon.png" type="image/png">
@@ -143,20 +143,20 @@
         <p>The order is: urgent, then stale, then needs final approval, then severity label, then longest in the queue.</p>
         <ul>
           <li><strong>Urgent</strong>: the MR carries your urgent label (<code>urgent</code> by default).</li>
-          <li><strong>Stale</strong>: the MR has been in the queue longer than your threshold (24 hours by default). The clock starts when Mergeflow first sees the MR ready. For MRs already ready on the first sync, the last update time is used and shown with "~".</li>
+          <li><strong>Stale</strong>: the MR has been ready longer than your threshold (24 hours by default). The ready time comes from the MR's GitLab history, so everyone on the team sees the same clock: the latest of when the MR was created, marked ready, or got new commits. Comments, approvals and label changes do not restart it. When the history cannot be read, Mergeflow keeps the last known time, or uses the creation time and shows it with "~".</li>
           <li><strong>Approvals</strong>: when a project sets no required approvals (GitLab Free), Mergeflow assumes two.</li>
         </ul>
-        <p>Use the sidebar views (urgent, getting stale, needs approval, approved by me), the project, author and team filters, the sort control, or search with <kbd>Ctrl</kbd> <kbd>K</kbd> (<kbd>⌘</kbd> <kbd>K</kbd> on a Mac). The queue syncs every 3 minutes by default, and the refresh button syncs now.</p>
+        <p>Use the sidebar views (urgent, getting stale, needs approval, approved by me), the project, author and team filters, the sort control, or search with <kbd>Ctrl</kbd> <kbd>K</kbd> (<kbd>⌘</kbd> <kbd>K</kbd> on a Mac). The queue syncs every 3 minutes by default, and the refresh button syncs now. When nothing is waiting, Flo, the Mergeflow otter, waves at you.</p>
       </div>
       <div lang="fr">
         <p>Par défaut, le tableau de bord liste les merge requests ouvertes, hors brouillons, de vos projets que GitLab déclare fusionnables, ou qui n'attendent que des relecteurs : approbations manquantes, fils non résolus, modifications demandées, ou pipeline en cours. Les MR en conflit, à rebaser, au pipeline échoué ou bloquées par une règle restent hors de la file jusqu'à ce que l'auteur corrige. Vous pouvez choisir les états affichés dans <strong>Réglages &gt; Règles de la file</strong>, et <strong>Rétablir les valeurs par défaut</strong> remet ces règles. Les notifications « prête » ne partent que pour les MR que GitLab peut fusionner.</p>
         <p>L'ordre est : urgentes, puis en retard, puis dernière approbation attendue, puis label de gravité, puis ancienneté dans la file.</p>
         <ul>
           <li><strong>Urgente</strong> : la MR porte votre label d'urgence (<code>urgent</code> par défaut).</li>
-          <li><strong>En retard</strong> : la MR est dans la file depuis plus longtemps que votre seuil (24 heures par défaut). Le compteur part du moment où Mergeflow voit la MR prête. Pour les MR déjà prêtes à la première synchronisation, la date de dernière mise à jour sert d'estimation, affichée avec « ~ ».</li>
+          <li><strong>En retard</strong> : la MR est prête depuis plus longtemps que votre seuil (24 heures par défaut). L'heure « prête depuis » vient de l'historique GitLab de la MR, donc toute l'équipe voit le même compteur : le plus récent entre sa création, son passage en prête et ses derniers commits. Les commentaires, approbations et labels ne le remettent pas à zéro. Si l'historique est illisible, Mergeflow garde la dernière heure connue, ou prend la date de création et l'affiche avec « ~ ».</li>
           <li><strong>Approbations</strong> : quand un projet n'exige aucune approbation (GitLab Free), Mergeflow en suppose deux.</li>
         </ul>
-        <p>Utilisez les vues de la barre latérale (urgentes, bientôt en retard, à approuver, approuvées par moi), les filtres par projet, auteur et équipe, le tri, ou la recherche avec <kbd>Ctrl</kbd> <kbd>K</kbd> (<kbd>⌘</kbd> <kbd>K</kbd> sur Mac). La file se synchronise toutes les 3 minutes par défaut, et le bouton d'actualisation la synchronise tout de suite.</p>
+        <p>Utilisez les vues de la barre latérale (urgentes, bientôt en retard, à approuver, approuvées par moi), les filtres par projet, auteur et équipe, le tri, ou la recherche avec <kbd>Ctrl</kbd> <kbd>K</kbd> (<kbd>⌘</kbd> <kbd>K</kbd> sur Mac). La file se synchronise toutes les 3 minutes par défaut, et le bouton d'actualisation la synchronise tout de suite. Quand rien n'attend, Flo, la loutre de Mergeflow, vous fait signe.</p>
       </div>
       <figure>
         <img src="assets/img/sidebar.webp" width="1280" height="860" loading="lazy" alt="Dashboard with summary cards, filters and merge request cards">
@@ -187,6 +187,7 @@
             <tr><td><span lang="en">Resolved</span><span lang="fr">Résolu</span></td><td><span lang="en">A thread you started is resolved or reopened</span><span lang="fr">Un fil que vous avez ouvert est résolu ou rouvert</span></td></tr>
             <tr><td><span lang="en">Token expiring</span><span lang="fr">Jeton expirant</span></td><td><span lang="en">Your GitLab token expires within 7 days, then within 3 days</span><span lang="fr">Votre jeton GitLab expire dans 7 jours, puis dans 3 jours</span></td></tr>
             <tr><td><span lang="en">AI review ready</span><span lang="fr">Revue IA prête</span></td><td><span lang="en">A review finished while Mergeflow was in the background</span><span lang="fr">Une revue s'est terminée pendant que Mergeflow était en arrière-plan</span></td></tr>
+            <tr><td><span lang="en">AI review waiting for your OK</span><span lang="fr">Revue IA en attente de votre accord</span></td><td><span lang="en">A review for your LLM service is larger than your limit and waits for you to send it, while Mergeflow is in the background</span><span lang="fr">Une revue pour votre service LLM dépasse votre limite et attend que vous l'envoyiez, pendant que Mergeflow est en arrière-plan</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -256,10 +257,10 @@
     <section id="ai-review">
       <h2><span lang="en">AI review</span><span lang="fr">Revue IA</span></h2>
       <div lang="en">
-        <p>AI review is off by default. Turn it on in <strong>Settings › AI review</strong>. Mergeflow does not ship a model or an account: it uses the CLI you already have and are signed in to.</p>
+        <p>AI review is off by default. Turn it on in <strong>Settings › AI review</strong>. Mergeflow does not ship a model or an account: it uses the CLI you already have and are signed in to, or an LLM service you set up yourself.</p>
         <h3>Requirements</h3>
         <ul>
-          <li><strong>Claude Code</strong> v2.1.259 or later, signed in (<code>claude auth status</code>), or <strong>GitHub Copilot CLI</strong>, signed in.</li>
+          <li><strong>Claude Code</strong> v2.1.259 or later, signed in (<code>claude auth status</code>), or <strong>GitHub Copilot CLI</strong>, signed in, or the address, model and key of <a href="#llm-api">your own LLM service</a>.</li>
           <li>Mergeflow finds the CLI on your PATH, in the usual install folders and, on macOS, in your login shell's PATH. You can also set its path in Settings.</li>
         </ul>
         <h3>Run a review</h3>
@@ -271,20 +272,33 @@
         </ul>
         <h3>Mergeflow's Clean Code reviewer</h3>
         <p>When no agent is picked, Mergeflow's reviewer follows Clean Code and SOLID: a summary with a verdict, a check against the MR description and Jira ticket, Mermaid diagrams of the change, findings grouped Critical, Major, Minor and Nit with file, class, method and line, why each is a problem and how to fix it, then missing tests. It writes in the app's language.</p>
+        <p>While the review runs, Flo the otter thinks it over in the review window. You can keep working: Mergeflow tells you when the review is ready.</p>
+        <h3 id="llm-api">Your own LLM service</h3>
+        <p>For teams that would rather not use the account signed in to a local CLI, Mergeflow can send the review to an LLM API directly. Choose <strong>Your LLM service (API)</strong> as the provider in <strong>Settings › AI review</strong>, then fill in:</p>
+        <ul>
+          <li><strong>Protocol</strong>: <em>Anthropic Messages</em>, or <em>OpenAI-compatible (Chat Completions)</em>, which covers OpenAI, Azure OpenAI, Mistral, OpenRouter, LiteLLM, vLLM, Ollama, LM Studio and most company gateways.</li>
+          <li><strong>Address</strong>: the API's base address, such as <code>https://api.anthropic.com</code> or <code>https://api.openai.com/v1</code>. It must use https, except for a server on your own computer (<code>http://localhost:11434/v1</code> for Ollama).</li>
+          <li><strong>Model</strong>: type it exactly as your service names it, or click <strong>List models</strong> to pick one. With Azure OpenAI, type the deployment name.</li>
+          <li><strong>Key header</strong> and <strong>API key</strong>: the protocol default (<code>x-api-key</code> or <code>Authorization: Bearer</code>), <code>api-key</code> for Azure, or none for a local server. <strong>Extra headers</strong> are for gateways that need an organization or project id.</li>
+          <li><strong>Max input</strong> and <strong>Max output</strong>, in tokens. A diff too large for the model is cut to fit, and the review lists the files left out.</li>
+          <li><strong>Ask before sending more than</strong>: above this size (50,000 tokens by default), the review waits for your OK. The window shows how many tokens go to which host and which files are sent, with <strong>Send</strong> and <strong>Cancel</strong>. Anthropic counts exactly; other services are estimated from the size.</li>
+        </ul>
+        <p><strong>Test connection</strong> sends a one-word request with the settings on screen. The key and extra headers are encrypted with your system keychain, like your GitLab token, only sent to that address, and never shown again. Nothing is shared or preconfigured: each person sets their own service on their own computer. Your agents work here too, as the system prompt, and each saved review records the model, the host and the tokens used.</p>
         <h3>What is reviewed, and where it goes</h3>
         <ul>
           <li>Only lines the MR adds or changes. Findings that point only at untouched lines are moved to a separate section at the end.</li>
           <li>The diff comes from GitLab and goes to the CLI on standard input only. The CLI runs in an empty temporary folder with every tool and MCP server off, so it cannot run commands, write files or browse.</li>
+          <li>With your own LLM service, the diff, description and comments go to the address you set, in one request with no tools: the model can only read it and write the review.</li>
           <li>Reviews are saved as Markdown on your computer (the last 5 per MR) and marked "outdated" when the MR gets new commits. Nothing is posted to GitLab.</li>
         </ul>
         <h3 id="proxy">Behind a company proxy</h3>
-        <p>The CLIs connect to their own services. If a review stops with a network or certificate error, set the proxy in <strong>Settings › AI review › Network › Proxy</strong> (for example <code>http://proxy.example.com:8080</code>), and choose your company root certificate file there if your network inspects HTTPS. You can also set the <code>HTTPS_PROXY</code>, <code>HTTP_PROXY</code>, <code>NO_PROXY</code> and <code>NODE_EXTRA_CA_CERTS</code> environment variables for your user, then restart Mergeflow. On macOS, Mergeflow reads them from your login shell (<code>~/.zshrc</code>).</p>
+        <p>The CLIs connect to their own services. If a review stops with a network or certificate error, set the proxy in <strong>Settings › AI review › Network › Proxy</strong> (for example <code>http://proxy.example.com:8080</code>), and choose your company root certificate file there if your network inspects HTTPS. If the proxy asks for a user name and password, enter them under <strong>Proxy login</strong>: they are saved encrypted and only sent to the proxy when it asks. Your own LLM service uses the same proxy (or the system's), login and certificate. You can also set the <code>HTTPS_PROXY</code>, <code>HTTP_PROXY</code>, <code>NO_PROXY</code> and <code>NODE_EXTRA_CA_CERTS</code> environment variables for your user, then restart Mergeflow. On macOS, Mergeflow reads them from your login shell (<code>~/.zshrc</code>).</p>
       </div>
       <div lang="fr">
-        <p>La revue IA est désactivée par défaut. Activez-la dans <strong>Réglages › Revue IA</strong>. Mergeflow ne fournit ni modèle ni compte : il utilise la CLI que vous avez déjà, et à laquelle vous êtes connecté.</p>
+        <p>La revue IA est désactivée par défaut. Activez-la dans <strong>Réglages › Revue IA</strong>. Mergeflow ne fournit ni modèle ni compte : il utilise la CLI que vous avez déjà, et à laquelle vous êtes connecté, ou un service LLM que vous configurez vous-même.</p>
         <h3>Prérequis</h3>
         <ul>
-          <li><strong>Claude Code</strong> v2.1.259 ou plus récent, connecté (<code>claude auth status</code>), ou <strong>GitHub Copilot CLI</strong>, connecté.</li>
+          <li><strong>Claude Code</strong> v2.1.259 ou plus récent, connecté (<code>claude auth status</code>), ou <strong>GitHub Copilot CLI</strong>, connecté, ou l'adresse, le modèle et la clé de <a href="#llm-api-fr">votre propre service LLM</a>.</li>
           <li>Mergeflow trouve la CLI dans le PATH, dans les dossiers d'installation habituels et, sur macOS, dans le PATH de votre shell de connexion. Vous pouvez aussi indiquer son chemin dans les Réglages.</li>
         </ul>
         <h3>Lancer une revue</h3>
@@ -296,20 +310,49 @@
         </ul>
         <h3>Le relecteur Clean Code de Mergeflow</h3>
         <p>Sans agent, le relecteur de Mergeflow suit Clean Code et SOLID : un résumé avec un verdict, une vérification par rapport à la description de la MR et au ticket Jira, des diagrammes Mermaid du changement, des remarques classées Critical, Major, Minor et Nit avec fichier, classe, méthode et ligne, pourquoi c'est un problème et comment le corriger, puis les tests manquants. Il écrit dans la langue de l'application.</p>
+        <p>Pendant la revue, Flo la loutre réfléchit dans la fenêtre de revue. Vous pouvez continuer à travailler : Mergeflow vous prévient quand la revue est prête.</p>
+        <h3 id="llm-api-fr">Votre propre service LLM</h3>
+        <p>Pour les équipes qui préfèrent ne pas utiliser le compte connecté à une CLI locale, Mergeflow peut envoyer la revue directement à une API de LLM. Choisissez <strong>Votre service LLM (API)</strong> comme fournisseur dans <strong>Réglages › Revue IA</strong>, puis renseignez :</p>
+        <ul>
+          <li><strong>Protocole</strong> : <em>Anthropic Messages</em>, ou <em>Compatible OpenAI (Chat Completions)</em>, qui couvre OpenAI, Azure OpenAI, Mistral, OpenRouter, LiteLLM, vLLM, Ollama, LM Studio et la plupart des passerelles d'entreprise.</li>
+          <li><strong>Adresse</strong> : l'adresse de base de l'API, comme <code>https://api.anthropic.com</code> ou <code>https://api.openai.com/v1</code>. Elle doit être en https, sauf pour un serveur sur votre ordinateur (<code>http://localhost:11434/v1</code> pour Ollama).</li>
+          <li><strong>Modèle</strong> : saisissez-le exactement comme votre service le nomme, ou cliquez sur <strong>Lister les modèles</strong> pour en choisir un. Avec Azure OpenAI, saisissez le nom du déploiement.</li>
+          <li><strong>En-tête de la clé</strong> et <strong>Clé d'API</strong> : celui du protocole (<code>x-api-key</code> ou <code>Authorization: Bearer</code>), <code>api-key</code> pour Azure, ou aucun pour un serveur local. Les <strong>en-têtes supplémentaires</strong> servent aux passerelles qui demandent un identifiant d'organisation ou de projet.</li>
+          <li><strong>Entrée max</strong> et <strong>Sortie max</strong>, en tokens. Un diff trop grand pour le modèle est coupé, et la revue liste les fichiers laissés de côté.</li>
+          <li><strong>Demander avant d'envoyer plus de</strong> : au-delà de cette taille (50 000 tokens par défaut), la revue attend votre accord. La fenêtre indique combien de tokens partent vers quel hôte et quels fichiers sont envoyés, avec <strong>Envoyer</strong> et <strong>Annuler</strong>. Anthropic compte exactement ; pour les autres services, c'est une estimation d'après la taille.</li>
+        </ul>
+        <p><strong>Tester la connexion</strong> envoie une requête d'un mot avec les réglages affichés. La clé et les en-têtes supplémentaires sont chiffrés avec le trousseau du système, comme votre jeton GitLab, envoyés seulement à cette adresse, et jamais réaffichés. Rien n'est partagé ni préconfiguré : chacun règle son propre service sur son ordinateur. Vos agents fonctionnent aussi, comme prompt système, et chaque revue enregistrée indique le modèle, l'hôte et les tokens utilisés.</p>
         <h3>Ce qui est relu, et où ça va</h3>
         <ul>
           <li>Seulement les lignes ajoutées ou modifiées par la MR. Les remarques qui ne visent que des lignes inchangées sont déplacées dans une section à part, à la fin.</li>
           <li>Le diff vient de GitLab et n'est transmis à la CLI que par l'entrée standard. La CLI tourne dans un dossier temporaire vide, sans aucun outil ni serveur MCP : elle ne peut ni lancer de commande, ni écrire de fichier, ni naviguer.</li>
+          <li>Avec votre propre service LLM, le diff, la description et les commentaires partent vers l'adresse choisie, en une seule requête sans outils : le modèle peut seulement les lire et écrire la revue.</li>
           <li>Les revues sont enregistrées en Markdown sur votre ordinateur (les 5 dernières par MR) et marquées « obsolètes » quand la MR reçoit de nouveaux commits. Rien n'est publié dans GitLab.</li>
         </ul>
         <h3>Derrière un proxy d'entreprise</h3>
-        <p>Les CLI se connectent à leurs propres services. Si une revue s'arrête sur une erreur réseau ou de certificat, indiquez le proxy dans <strong>Réglages › Revue IA › Réseau › Proxy</strong> (par exemple <code>http://proxy.example.com:8080</code>), et choisissez-y le fichier du certificat racine de l'entreprise si votre réseau inspecte le HTTPS. Vous pouvez aussi définir les variables d'environnement utilisateur <code>HTTPS_PROXY</code>, <code>HTTP_PROXY</code>, <code>NO_PROXY</code> et <code>NODE_EXTRA_CA_CERTS</code>, puis redémarrer Mergeflow. Sur macOS, Mergeflow les lit dans votre shell de connexion (<code>~/.zshrc</code>).</p>
+        <p>Les CLI se connectent à leurs propres services. Si une revue s'arrête sur une erreur réseau ou de certificat, indiquez le proxy dans <strong>Réglages › Revue IA › Réseau › Proxy</strong> (par exemple <code>http://proxy.example.com:8080</code>), et choisissez-y le fichier du certificat racine de l'entreprise si votre réseau inspecte le HTTPS. Si le proxy demande un nom d'utilisateur et un mot de passe, saisissez-les dans <strong>Identifiant du proxy</strong> : ils sont chiffrés et envoyés seulement au proxy, quand il les demande. Votre propre service LLM utilise le même proxy (ou celui du système), le même identifiant et le même certificat. Vous pouvez aussi définir les variables d'environnement utilisateur <code>HTTPS_PROXY</code>, <code>HTTP_PROXY</code>, <code>NO_PROXY</code> et <code>NODE_EXTRA_CA_CERTS</code>, puis redémarrer Mergeflow. Sur macOS, Mergeflow les lit dans votre shell de connexion (<code>~/.zshrc</code>).</p>
       </div>
       <figure>
         <img src="assets/img/ai-start.webp" width="1280" height="820" loading="lazy" alt="Start review dialog with agent, skill and base branch">
       </figure>
       <figure>
         <img src="assets/img/review-diagrams.webp" width="1280" height="793" loading="lazy" alt="A review with Mermaid diagrams of the change">
+      </figure>
+      <figure>
+        <img class="shot-light" src="assets/img/llm-settings-light.webp" width="781" height="696" loading="lazy" alt="Settings for your own LLM service: model, key header, API key, extra headers, token limits and Test connection">
+        <img class="shot-dark" src="assets/img/llm-settings-dark.webp" width="781" height="696" loading="lazy" alt="Settings for your own LLM service, dark theme">
+      </figure>
+      <figure>
+        <img class="shot-light" src="assets/img/llm-confirm-light.webp" width="720" height="503" loading="lazy" alt="A large review waiting for your OK, with the token count, the host and Send">
+        <img class="shot-dark" src="assets/img/llm-confirm-dark.webp" width="720" height="503" loading="lazy" alt="A large review waiting for your OK, dark theme">
+      </figure>
+      <figure>
+        <img class="shot-light" src="assets/img/llm-review-light.webp" width="720" height="415" loading="lazy" alt="A review by your LLM service, with the model, host and tokens used">
+        <img class="shot-dark" src="assets/img/llm-review-dark.webp" width="720" height="415" loading="lazy" alt="A review by your LLM service, dark theme">
+      </figure>
+      <figure>
+        <img class="shot-light" src="assets/img/proxy-login-light.webp" width="781" height="133" loading="lazy" alt="Proxy login fields in Settings, AI review, Network">
+        <img class="shot-dark" src="assets/img/proxy-login-dark.webp" width="781" height="133" loading="lazy" alt="Proxy login fields, dark theme">
       </figure>
     </section>
 
@@ -341,8 +384,8 @@
       <h2><span lang="en">Privacy and security</span><span lang="fr">Confidentialité et sécurité</span></h2>
       <div lang="en">
         <ul>
-          <li>No account, no Mergeflow server, no analytics. The app talks only to your GitLab, your Jira, GitHub for updates, and, if you turn on AI review, the CLI you chose.</li>
-          <li>Tokens are encrypted with the system keychain and never reach the app's window. The settings file is readable only by you.</li>
+          <li>No account, no Mergeflow server, no analytics. The app talks only to your GitLab, your Jira, GitHub for updates, and, if you turn on AI review, the CLI or LLM service you chose.</li>
+          <li>Tokens, API keys and proxy logins are encrypted with the system keychain and never reach the app's window. The settings file is readable only by you.</li>
           <li>A <code>read_api</code> token is all Mergeflow needs, and it never writes to GitLab.</li>
           <li>The window is sandboxed, opens links only in your browser (http and https only), and never loads remote images.</li>
           <li>This website uses no cookies and no trackers. Your language and theme choices are kept in your browser only.</li>
@@ -350,8 +393,8 @@
       </div>
       <div lang="fr">
         <ul>
-          <li>Pas de compte, pas de serveur Mergeflow, pas de statistiques. L'application ne parle qu'à votre GitLab, votre Jira, GitHub pour les mises à jour et, si vous activez la revue IA, la CLI choisie.</li>
-          <li>Les jetons sont chiffrés avec le trousseau du système et n'atteignent jamais la fenêtre de l'application. Le fichier de réglages n'est lisible que par vous.</li>
+          <li>Pas de compte, pas de serveur Mergeflow, pas de statistiques. L'application ne parle qu'à votre GitLab, votre Jira, GitHub pour les mises à jour et, si vous activez la revue IA, la CLI ou le service LLM choisi.</li>
+          <li>Les jetons, clés d'API et identifiants de proxy sont chiffrés avec le trousseau du système et n'atteignent jamais la fenêtre de l'application. Le fichier de réglages n'est lisible que par vous.</li>
           <li>Un jeton <code>read_api</code> suffit, et Mergeflow n'écrit jamais dans GitLab.</li>
           <li>La fenêtre est isolée (sandbox), n'ouvre les liens que dans votre navigateur (http et https seulement) et ne charge jamais d'image distante.</li>
           <li>Ce site n'utilise ni cookies ni traceurs. Vos choix de langue et de thème restent dans votre navigateur.</li>
@@ -387,8 +430,11 @@
       <details lang="en"><summary>An update does not arrive</summary><p>Updates are checked at launch and every 4 hours. The portable Windows zip never updates itself. The updater writes to <code>updater.log</code> in the same logs folder.</p></details>
       <details lang="fr"><summary>Une mise à jour n'arrive pas</summary><p>Les mises à jour sont vérifiées au lancement et toutes les 4 heures. Le zip portable Windows ne se met jamais à jour. Le programme de mise à jour écrit dans <code>updater.log</code>, dans le même dossier de journaux.</p></details>
 
-      <details lang="en"><summary>An AI review fails with a network or certificate error</summary><p>Your network probably needs a proxy or inspects HTTPS. See <a href="#proxy">Behind a company proxy</a>.</p></details>
-      <details lang="fr"><summary>Une revue IA échoue sur une erreur réseau ou de certificat</summary><p>Votre réseau a sans doute besoin d'un proxy ou inspecte le HTTPS. Voir la partie proxy de la section <a href="#ai-review">Revue IA</a>.</p></details>
+      <details lang="en"><summary>Can I use AI review without Claude Code or Copilot?</summary><p>Yes. Set up your own LLM service, such as your company's OpenAI-compatible gateway, Azure OpenAI, the Anthropic API or a local Ollama. See <a href="#llm-api">Your own LLM service</a>.</p></details>
+      <details lang="fr"><summary>Puis-je utiliser la revue IA sans Claude Code ni Copilot ?</summary><p>Oui. Configurez votre propre service LLM, comme la passerelle compatible OpenAI de votre entreprise, Azure OpenAI, l'API d'Anthropic ou un Ollama local. Voir <a href="#llm-api-fr">Votre propre service LLM</a>.</p></details>
+
+      <details lang="en"><summary>An AI review fails with a network or certificate error</summary><p>Your network probably needs a proxy or inspects HTTPS. If the error says the proxy asks for a login, enter it under Proxy login. See <a href="#proxy">Behind a company proxy</a>.</p></details>
+      <details lang="fr"><summary>Une revue IA échoue sur une erreur réseau ou de certificat</summary><p>Votre réseau a sans doute besoin d'un proxy ou inspecte le HTTPS. Si l'erreur dit que le proxy demande un identifiant, saisissez-le dans Identifiant du proxy. Voir la partie proxy de la section <a href="#ai-review">Revue IA</a>.</p></details>
 
       <details lang="en"><summary>Where are my settings stored?</summary><p>In <code>~/Library/Application Support/Mergeflow</code> on macOS and <code>%APPDATA%\Mergeflow</code> on Windows. Tokens in that folder are encrypted. Uninstalling the app keeps it; delete the folder to start fresh.</p></details>
       <details lang="fr"><summary>Où sont enregistrés mes réglages ?</summary><p>Dans <code>~/Library/Application Support/Mergeflow</code> sur macOS et <code>%APPDATA%\Mergeflow</code> sous Windows. Les jetons y sont chiffrés. Désinstaller l'application garde ce dossier ; supprimez-le pour repartir de zéro.</p></details>
