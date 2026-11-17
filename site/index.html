@@ -6,10 +6,10 @@
   <title>Mergeflow: your GitLab merge requests, in one calm queue</title>
   <meta name="title-en" content="Mergeflow: your GitLab merge requests, in one calm queue">
   <meta name="title-fr" content="Mergeflow : vos merge requests GitLab, dans une seule file">
-  <meta name="description" content="Mergeflow is a free desktop app for macOS and Windows that shows every GitLab merge request waiting for you, nudges your team about stale reviews with native notifications, shows linked Jira tickets and runs AI reviews with your own Claude Code or GitHub Copilot.">
+  <meta name="description" content="Mergeflow is a free desktop app for macOS and Windows that shows every GitLab merge request waiting for you, nudges your team about stale reviews with native notifications, shows linked Jira tickets and runs AI reviews with your own Claude Code, GitHub Copilot or LLM service.">
   <meta name="color-scheme" content="light dark">
   <meta property="og:title" content="Mergeflow">
-  <meta property="og:description" content="Every GitLab merge request that needs you, in one calm queue. Native notifications for stale reviews, Jira context and AI review.">
+  <meta property="og:description" content="Every GitLab merge request that needs you, in one calm queue. Native notifications for stale reviews, Jira context and AI review with your own CLI or LLM service.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/img/poster.webp">
   <link rel="icon" href="assets/img/icon.svg" type="image/svg+xml">
@@ -62,7 +62,7 @@
           <span lang="en">Watch the 1-minute tour</span><span lang="fr">Voir la visite d'une minute</span>
         </a>
       </div>
-      <p class="cta-note"><span lang="en">Read-only GitLab token · nothing leaves your computer except calls to your own GitLab and Jira</span><span lang="fr">Jeton GitLab en lecture seule · rien ne quitte votre ordinateur, sauf les appels à votre GitLab et à votre Jira</span></p>
+      <p class="cta-note"><span lang="en">Read-only GitLab token · nothing leaves your computer except calls to your own GitLab, Jira and, if you turn it on, the AI service you pick</span><span lang="fr">Jeton GitLab en lecture seule · rien ne quitte votre ordinateur, sauf les appels à votre GitLab, à votre Jira et, si vous l'activez, au service IA choisi</span></p>
       <div class="shot">
         <img src="assets/img/sidebar.webp" width="1280" height="860" alt="Mergeflow dashboard: a queue of merge requests with urgent, stale and approval status, filters and a sidebar of projects">
       </div>
@@ -80,7 +80,7 @@
         <div class="card">
           <div class="ico purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M6 9v12M13 6h3a2 2 0 0 1 2 2v7"/></svg></div>
           <h3><span lang="en">One queue for all projects</span><span lang="fr">Une file pour tous les projets</span></h3>
-          <p><span lang="en">Open merge requests that are mergeable or waiting only on reviewers, across every project you follow, sorted urgent first, then stale, then by severity.</span><span lang="fr">Les merge requests ouvertes, fusionnables ou qui n'attendent que des relecteurs, sur tous vos projets, triées : urgentes, puis en retard, puis par gravité.</span></p>
+          <p><span lang="en">Open merge requests that are mergeable or waiting only on reviewers, across every project you follow, sorted urgent first, then stale, then by severity. You choose which states count.</span><span lang="fr">Les merge requests ouvertes, fusionnables ou qui n'attendent que des relecteurs, sur tous vos projets, triées : urgentes, puis en retard, puis par gravité. Vous choisissez les états retenus.</span></p>
         </div>
         <div class="card">
           <div class="ico amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg></div>
@@ -99,8 +99,8 @@
         </div>
         <div class="card">
           <div class="ico green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 4.6L18.5 9l-4.6 1.9L12 15.5l-1.9-4.6L5.5 9l4.6-1.4z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></svg></div>
-          <h3><span lang="en">AI review with your own CLI</span><span lang="fr">Revue IA avec votre propre CLI</span></h3>
-          <p><span lang="en">Run Claude Code or GitHub Copilot CLI on an MR, with your agents and skills or Mergeflow's Clean Code reviewer. Findings stay on your machine.</span><span lang="fr">Lancez Claude Code ou GitHub Copilot CLI sur une MR, avec vos agents et vos skills ou le relecteur Clean Code de Mergeflow. Les remarques restent sur votre machine.</span></p>
+          <h3><span lang="en">AI review, your model</span><span lang="fr">Revue IA, avec votre modèle</span></h3>
+          <p><span lang="en">Run Claude Code, GitHub Copilot CLI or your own LLM service on an MR, with your agents and skills or Mergeflow's Clean Code reviewer. Findings stay on your machine.</span><span lang="fr">Lancez Claude Code, GitHub Copilot CLI ou votre propre service LLM sur une MR, avec vos agents et vos skills ou le relecteur Clean Code de Mergeflow. Les remarques restent sur votre machine.</span></p>
         </div>
         <div class="card">
           <div class="ico red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
@@ -142,6 +142,8 @@
           <ul>
             <li><span lang="en">Sidebar views: urgent, getting stale, needs approval, approved by me</span><span lang="fr">Vues : urgentes, bientôt en retard, à approuver, approuvées par moi</span></li>
             <li><span lang="en">Your own urgent label and severity order (Critical, High, Medium, Low)</span><span lang="fr">Votre label d'urgence et votre ordre de gravité (Critical, High, Medium, Low)</span></li>
+            <li><span lang="en">Ready time read from the MR's GitLab history, so the whole team sees the same "stale"</span><span lang="fr">Heure « prête depuis » lue dans l'historique GitLab de la MR : toute l'équipe voit le même retard</span></li>
+            <li><span lang="en">Queue rules: let drafts, failed pipelines or conflicts in, or keep them out</span><span lang="fr">Règles de la file : acceptez ou écartez brouillons, pipelines en échec et conflits</span></li>
             <li><span lang="en">Synced every 3 minutes, or whenever you like</span><span lang="fr">Synchronisé toutes les 3 minutes, ou à la demande</span></li>
             <li><span lang="en">Click a title for the full context: branches, pipeline, approvals, description and Jira ticket</span><span lang="fr">Un clic sur le titre affiche tout le contexte : branches, pipeline, approbations, description et ticket Jira</span></li>
           </ul>
@@ -177,13 +179,26 @@
       <div class="feature">
         <div class="feature-text">
           <h3><span lang="en">A second pair of eyes, on your terms</span><span lang="fr">Un deuxième avis, à vos conditions</span></h3>
-          <p><span lang="en">Mergeflow hands the MR diff to your own Claude Code or GitHub Copilot CLI, with every tool switched off. Pick an agent and a skill per MR, or use the built-in Clean Code and SOLID reviewer with Mermaid diagrams of the change.</span><span lang="fr">Mergeflow confie le diff de la MR à votre propre Claude Code ou GitHub Copilot CLI, tous les outils désactivés. Choisissez un agent et un skill par MR, ou le relecteur intégré Clean Code et SOLID, avec des diagrammes Mermaid du changement.</span></p>
+          <p><span lang="en">Mergeflow hands the MR diff to your own Claude Code or GitHub Copilot CLI, or to your own LLM service, with every tool switched off. Pick an agent and a skill per MR, or use the built-in Clean Code and SOLID reviewer with Mermaid diagrams of the change.</span><span lang="fr">Mergeflow confie le diff de la MR à votre propre Claude Code ou GitHub Copilot CLI, ou à votre propre service LLM, tous les outils désactivés. Choisissez un agent et un skill par MR, ou le relecteur intégré Clean Code et SOLID, avec des diagrammes Mermaid du changement.</span></p>
           <ul>
             <li><span lang="en">Findings on changed lines only, grouped Critical, Major, Minor, Nit</span><span lang="fr">Remarques sur les lignes modifiées uniquement, classées Critical, Major, Minor, Nit</span></li>
             <li><span lang="en">Saved as Markdown on your computer, never posted to GitLab</span><span lang="fr">Enregistrées en Markdown sur votre ordinateur, jamais publiées dans GitLab</span></li>
           </ul>
         </div>
         <img src="assets/img/review-findings.webp" width="1280" height="793" loading="lazy" alt="AI review viewer with findings grouped by severity">
+      </div>
+      <div class="feature flip">
+        <div class="feature-text">
+          <h3><span lang="en">Bring your own LLM service</span><span lang="fr">Votre propre service LLM</span></h3>
+          <p><span lang="en">No local CLI? Point Mergeflow at the API your company already uses. Each person sets their own address, model and key, stored encrypted on their computer.</span><span lang="fr">Pas de CLI sur votre poste ? Branchez Mergeflow sur l'API que votre entreprise utilise déjà. Chacun saisit son adresse, son modèle et sa clé, chiffrée sur son ordinateur.</span></p>
+          <ul>
+            <li><span lang="en">Anthropic Messages, or OpenAI-compatible: OpenAI, Azure OpenAI, Mistral, OpenRouter, LiteLLM, vLLM, Ollama, LM Studio and most company gateways</span><span lang="fr">Anthropic Messages, ou compatible OpenAI : OpenAI, Azure OpenAI, Mistral, OpenRouter, LiteLLM, vLLM, Ollama, LM Studio et la plupart des passerelles d'entreprise</span></li>
+            <li><span lang="en">Asks for your OK, with the token count, before sending a large review</span><span lang="fr">Demande votre accord, avec le nombre de tokens, avant d'envoyer une grosse revue</span></li>
+            <li><span lang="en">Works behind company proxies, including ones that ask for a login</span><span lang="fr">Fonctionne derrière un proxy d'entreprise, même s'il demande un identifiant</span></li>
+          </ul>
+        </div>
+        <img class="shot-light" src="assets/img/llm-confirm-light.webp" width="720" height="503" loading="lazy" alt="AI review waiting for your OK: Flo the otter thinks while the dialog shows how many tokens the review will send to your LLM service">
+        <img class="shot-dark" src="assets/img/llm-confirm-dark.webp" width="720" height="503" loading="lazy" alt="AI review waiting for your OK, dark theme">
       </div>
     </div>
   </section>
@@ -201,6 +216,8 @@
         <figure><a href="assets/img/review-diagrams.webp"><img src="assets/img/review-diagrams.webp" loading="lazy" width="1280" height="793" alt="AI review with Mermaid diagrams"></a><figcaption><span lang="en">Diagrams of the change in a review</span><span lang="fr">Diagrammes du changement dans une revue</span></figcaption></figure>
         <figure><a href="assets/img/review-dark-fr.webp"><img src="assets/img/review-dark-fr.webp" loading="lazy" width="1280" height="793" alt="AI review in French, dark theme"></a><figcaption><span lang="en">Review in French, dark theme</span><span lang="fr">Revue en français, thème sombre</span></figcaption></figure>
         <figure><a href="assets/img/ai-start.webp"><img src="assets/img/ai-start.webp" loading="lazy" width="1280" height="820" alt="Start an AI review: pick agent, skill and base branch"></a><figcaption><span lang="en">Pick an agent, a skill and a base branch</span><span lang="fr">Choisissez un agent, un skill et une branche de base</span></figcaption></figure>
+        <figure><a class="shot-light" href="assets/img/llm-settings-light.webp"><img src="assets/img/llm-settings-light.webp" loading="lazy" width="781" height="696" alt="Settings for your own LLM service: model, key header, API key, extra headers and token limits"></a><a class="shot-dark" href="assets/img/llm-settings-dark.webp"><img src="assets/img/llm-settings-dark.webp" loading="lazy" width="781" height="696" alt="Settings for your own LLM service: model, key header, API key, extra headers and token limits, dark theme"></a><figcaption><span lang="en">Your own LLM service, with a connection test</span><span lang="fr">Votre propre service LLM, avec un test de connexion</span></figcaption></figure>
+        <figure><a class="shot-light" href="assets/img/flo-empty-light.webp"><img src="assets/img/flo-empty-light.webp" loading="lazy" width="1180" height="753" alt="Empty queue with Flo the otter waving"></a><a class="shot-dark" href="assets/img/flo-empty-dark.webp"><img src="assets/img/flo-empty-dark.webp" loading="lazy" width="1180" height="753" alt="Empty queue with Flo the otter waving, dark theme"></a><figcaption><span lang="en">Flo the otter, when nothing is waiting</span><span lang="fr">Flo la loutre, quand rien n'attend</span></figcaption></figure>
         <figure><a href="assets/img/settings.webp"><img src="assets/img/settings.webp" loading="lazy" width="1280" height="860" alt="Settings"></a><figcaption><span lang="en">Thresholds, labels, language and more</span><span lang="fr">Seuils, labels, langue et plus</span></figcaption></figure>
       </div>
     </div>
